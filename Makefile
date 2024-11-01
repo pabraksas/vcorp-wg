@@ -1,9 +1,12 @@
 .ONESHELL:
 SHELL:=/usr/bin/bash
-.DEFAULT_GOAL:=h
+#
+.DEFAULT_GOAL=setup
+# Phony targets
+#.PHONY: help env_load setup build start
 # ###
-ALLOWED_CONFIGS=".defaults,.config,.env,.env.local,.ctx"
-
+#ALLOWED_CONFIGS=".defaults,.config,.env,.env.local,.ctx,"
+#ALLOWED_CONFIGS=('.defaults','.config','.env','.env.local','.ctx')
 # #########################################################################################################
 # ###
 # $#   :number of positional parameters.
@@ -35,35 +38,7 @@ log_err = @echo -e '\033[38;2;255;0;32m$1\033[0m'
 log_achtung = @echo -e '\033[38;2;200;50;50m$1\033[0m'
 
 # all: hooks install build init serve
-# default: help
-
-#: Initialize same parametrs
-init:
-	@THIS=$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || echo $0);
-	@CURRENT_TIME=$(date +'%Y.%m.%d %H:%M:%S.%N');
-	@CURRENT_USER=$(whoami);
-	@CURRENT_DIR=$(dirname "${THIS}");
-	#
-	@$(MAKE) -s env_load
-	#
-	nvm use --lts >/dev/null 2>&1
-
-
-#: Load .env or another file from '$ALLOWED_CONFIGS' if exists
-env_load:
-	echo -e "\033[38;2;0;255;32m"
-	IFS=',' read -a arr <<<"$ALLOWED_CONFIGS"
-	for filename in "${arr[@]}"; do
-		# shellcheck disable=SC1073
-		if [[ -f "$filename" ]] ; then
-			echo -e "   Loading vars from: '$filename'";
-			set -a;
-			# shellcheck disable=SC1090
-			source $filename;
-			set +a;
-		fi
-	done
-	echo -e "\033[0m"
+default: help
 
 #: Testim
 testim t:  init
@@ -73,8 +48,37 @@ testim t:  init
 	$(call log_warning, 'log_warning')
 	$(call log_err, 'log_err')
 	$(call log_achtung, 'log_achtung')
+	echo -e "testim: $@ $#"
+
+#: Initialize same parametrs
+init: vars
+	@echo -e '\033[38;2;0;155;200m'
+	#@if [[ -f ".env" ]] ; then echo "load .env"; set -a; source .env; set +a; fi ;
+	#@if [[ -f ".env.local" ]] ; then echo "load .env.local"; set -a; source .env.local; set +a; fi ;
 	#
-	@echo -e "testim: $@ $#"
+	bash ~/.nvm/nvm.sh use --lts >/dev/null 2>&1
+	#
+	@echo -e '\033[0m'
+
+#: Load .env or another file from '$ALLOWED_CONFIGS' if exists
+vars:
+	@echo -e '\033[38;2;0;155;200m'
+	#
+	if [[ -f ".env" ]]; then
+	echo "load vars from: '.env'";
+	set -a;
+	source .env;
+	set +a;
+	fi;
+	#
+	if [[ -f ".env.local" ]]; then
+	echo "load vars from: '.env.local'";
+	set -a;
+	source .env.local;
+	set +a;
+	fi;
+	#
+	echo -e "\033[0m"
 
 #: Help and Commands list
 h help: init
@@ -90,7 +94,6 @@ h help: init
 		__INTERACTIVE="1"
 	fi
 
-
 #: Check runing at root
 sudoer:
 	if [[ $UID != 0 ]]; then
@@ -99,26 +102,25 @@ sudoer:
 		@exit 1
 	fi
 
+
 #: Setuping
-setup:
-	@echo "============================================="
-	@echo "               -=  Setuping  =-"
-	@echo "============================================="
+setup:  init
+	@echo -e "\033[38;2;0;255;32m"
+	@echo "               -=  Setuping  =-               "
 
 	@$(MAKE) -s clean
 
-	pnpm install
+	@pnpm install
 
 	@$(MAKE) -s build
 
-
-	@echo -e "\a"
+	@echo -e "\033[0m"
+	#@echo -e "\a"
 
 #: Remove files and folders
 clear clean:
-	@echo "============================================="
-	@echo "               -=  Cleaning  =-"
-	@echo "============================================="
+	@echo -e "\033[38;2;255;0;32m"
+	@echo "               -=  Cleaning  =-               "
 
 	rm -rf `find . -type d -name build`
 	rm -rf `find . -type d -name _build`
@@ -135,7 +137,8 @@ clear clean:
 	rm -f `find . -type f -name 'yarn.lock' ` >/dev/null 2>&1
 	rm -f `find . -type f -name 'package-lock.json' `  >/dev/null 2>&1
 
-	@echo -e "\a"
+	@echo -e "\033[0m"
+	#@echo -e "\a"
 
 #.SILENT:
 switch: init
@@ -161,29 +164,22 @@ d:
 
 #: Down
 down:
-	@echo "============================================="
+	#@echo "============================================="
 	@echo "               -= Down =-"
-	@echo "============================================="
+	#@echo "============================================="
 
 	docker compose -f docker-compose.yml down -v
 
-	@echo -e "\a"
+	#@echo -e "\a"
 
 s:
 	@$(MAKE) -s start
 
 #: Starting
 start: init
-	@echo "============================================="
-	@echo "               -= Starting =-"
-	@echo "============================================="
-	#docker compose -f docker-compose.yml up -d --build --force-recreate
-	export COMPOSE_DOCKER_CLI_BUILD=1
-	export DOCKER_BUILDKIT=1
-	# docker compose -f docker-compose.yml build
-	docker compose -f compose.yml up -d --build --force-recreate
+	@echo "               -= Starting =-               "
 
-	@echo -e "\a"
+	#@echo -e "\a"
 
 
 b:
@@ -191,13 +187,12 @@ b:
 
 #: Building
 build: init
-	@echo "============================================="
-	@echo "               -= Building =-"
-	@echo "============================================="
+	@echo -e "\033[38;2;10;0;255m"
+	@echo "               -= Building =-               "
 
-	turbo build
+	@turbo build
 
-	@echo -e "\a"
+	@echo -e "\033[0m"
 
 bi:
 	@$(MAKE) -s build-images

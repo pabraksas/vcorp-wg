@@ -1,16 +1,16 @@
 {
-  "name": "web-app",
+  "name": "web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev --turbo --port 8000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
-    "next": "14.2.6",
+    "next": "latest",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },

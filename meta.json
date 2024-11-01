@@ -1,6 +1,6 @@
 {
-  "name": "Next.js",
-  "description": "Minimal Turborepo example for learning the fundamentals.",
+  "name": "vCorp Workgroups",
+  "description": "vCorp Workgroups Managment.",
   "template": "https://vercel.com/templates/next.js/turborepo-next-basic",
   "featured": true,
   "boost": true
