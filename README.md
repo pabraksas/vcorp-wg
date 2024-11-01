@@ -1,6 +1,6 @@
-# Turborepo starter
+# vCorp
 
-This is an official starter Turborepo.
+This is an official vCorp nonorepo
 
 ## Using this example
 

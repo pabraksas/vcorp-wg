@@ -1,7 +1,13 @@
 {
   "name": "vcorp-wg",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pabraksas/vcorp-wg.git"
+  },
   "scripts": {
+    "wg": "node packages/wgutils/dist/cli.js",
+    "setup": "pnpm i",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
@@ -14,6 +20,6 @@
   },
   "packageManager": "pnpm@8.15.6",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   }
 }
