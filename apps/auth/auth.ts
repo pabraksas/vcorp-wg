@@ -1,6 +1,10 @@
 import NextAuth from "next-auth"
 import "next-auth/jwt"
+//
+import GitHub from "next-auth/providers/github"
+import Passkey from "next-auth/providers/passkey"
 
+/*
 import Apple from "next-auth/providers/apple"
 // import Atlassian from "next-auth/providers/atlassian"
 import Auth0 from "next-auth/providers/auth0"
@@ -12,7 +16,6 @@ import Coinbase from "next-auth/providers/coinbase"
 import Discord from "next-auth/providers/discord"
 import Dropbox from "next-auth/providers/dropbox"
 import Facebook from "next-auth/providers/facebook"
-import GitHub from "next-auth/providers/github"
 import GitLab from "next-auth/providers/gitlab"
 import Google from "next-auth/providers/google"
 import Hubspot from "next-auth/providers/hubspot"
@@ -22,7 +25,6 @@ import MicrosoftEntraId from "next-auth/providers/microsoft-entra-id"
 import Netlify from "next-auth/providers/netlify"
 import Okta from "next-auth/providers/okta"
 import Passage from "next-auth/providers/passage"
-import Passkey from "next-auth/providers/passkey"
 import Pinterest from "next-auth/providers/pinterest"
 import Reddit from "next-auth/providers/reddit"
 import Slack from "next-auth/providers/slack"
@@ -33,6 +35,7 @@ import Twitter from "next-auth/providers/twitter"
 import Vipps from "next-auth/providers/vipps"
 import WorkOS from "next-auth/providers/workos"
 import Zoom from "next-auth/providers/zoom"
+*/
 import { createStorage } from "unstorage"
 import memoryDriver from "unstorage/drivers/memory"
 import vercelKVDriver from "unstorage/drivers/vercel-kv"
@@ -53,6 +56,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
   adapter: UnstorageAdapter(storage),
   providers: [
+    GitHub,
+    /*
     Apple,
     // Atlassian,
     Auth0,
@@ -68,7 +73,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Discord,
     Dropbox,
     Facebook,
-    GitHub,
     GitLab,
     Google,
     Hubspot,
@@ -77,6 +81,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     MicrosoftEntraId,
     Netlify,
     Okta,
+    */
     Passkey({
       formFields: {
         email: {
@@ -86,6 +91,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         },
       },
     }),
+    /*
     Passage,
     Pinterest,
     Reddit,
@@ -99,6 +105,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
     WorkOS({ connection: process.env.AUTH_WORKOS_CONNECTION! }),
     Zoom,
+    */
   ],
   basePath: "/auth",
   session: { strategy: "jwt" },

@@ -6,7 +6,7 @@ SHELL:=/usr/bin/bash
 #.PHONY: help env_load setup build start
 # ###
 #ALLOWED_CONFIGS=".defaults,.config,.env,.env.local,.ctx,"
-#ALLOWED_CONFIGS=('.defaults','.config','.env','.env.local','.ctx')
+ALLOWED_CONFIGS=(".defaults" ".config" ".env" ".env.local" ".ctx")
 # #########################################################################################################
 # ###
 # $#   :number of positional parameters.
@@ -60,7 +60,7 @@ init: vars
 	#
 	@echo -e '\033[0m'
 
-#: Load .env or another file from '$ALLOWED_CONFIGS' if exists
+#: Load .env or another file from $ALLOWED_CONFIGS if exists
 vars:
 	@echo -e '\033[38;2;0;155;200m'
 	#
@@ -78,6 +78,17 @@ vars:
 	set +a;
 	fi;
 	#
+	echo "Enabled configs: ${args[*]}"
+	for filename in "${args[@]}" ; do
+		echo "config: ${filename}"
+	end
+
+
+#	if ! docker compose "${args[@]}"; then
+#		echo "Failed to start container"
+#		exit 1
+#	fi
+
 	echo -e "\033[0m"
 
 #: Help and Commands list

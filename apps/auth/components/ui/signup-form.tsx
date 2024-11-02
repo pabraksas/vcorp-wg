@@ -1,3 +1,4 @@
+/*
 import { signup } from '@/app/actions/auth'
 
 export function SignupForm() {
@@ -19,3 +20,4 @@ export function SignupForm() {
     </form>
   )
 }
+*/

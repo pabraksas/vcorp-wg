@@ -6,10 +6,10 @@
   "bugs": {
     "url": "https://github.com/nextauthjs/next-auth/issues"
   },
-  "homepage": "https://next-auth-example.vercel.app",
+  "homepage": "https://vcorp-auth.vercel.app",
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev --turbo --port 18000",
+    "dev": "next dev --turbo --port 10000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
