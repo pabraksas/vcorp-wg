@@ -24,7 +24,7 @@ export function AddForm() {
 
   return (
     <form action={formAction}>
-      <label htmlFor="workgroup">Enter Workgroup</label>
+      <label htmlFor="workgroup">Enter Task</label>
       <input type="text" id="workgroup" name="workgroup" required />
       <SubmitButton />
       <p aria-live="polite" className="sr-only" role="status">

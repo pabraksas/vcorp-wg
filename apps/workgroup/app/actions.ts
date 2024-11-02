@@ -8,9 +8,9 @@ let sql = postgres(process.env.DATABASE_URL || process.env.POSTGRES_URL!, {
   ssl: "allow",
 });
 
-// CREATE TABLE workgroup (
+// CREATE TABLE workgroups (
 //   id SERIAL PRIMARY KEY,
-//   workgroup TEXT NOT NULL
+//   text TEXT NOT NULL
 // );
 
 export async function createWorkgroup(
@@ -27,19 +27,19 @@ export async function createWorkgroup(
   });
 
   if (!parse.success) {
-    return { message: "Failed to create todo" };
+    return { message: "Failed to create workgroup" };
   }
 
   const data = parse.data;
 
   try {
     await sql`
-      INSERT INTO workgroup (text)
+      INSERT INTO workgroups (text)
       VALUES (${data.workgroup})
     `;
 
     revalidatePath("/");
-    return { message: `Added todo ${data.workgroup}` };
+    return { message: `Added workgroup ${data.workgroup}` };
   } catch (e) {
     return { message: "Failed to create workgroup" };
   }
@@ -62,12 +62,12 @@ export async function deleteWorkgroup(
 
   try {
     await sql`
-      DELETE FROM workgroup
+      DELETE FROM workgroups
       WHERE id = ${data.id};
     `;
 
     revalidatePath("/");
-    return { message: `Deleted todo ${data.workgroup}` };
+    return { message: `Deleted workgroup ${data.workgroup}` };
   } catch (e) {
     return { message: "Failed to delete workgroup" };
   }

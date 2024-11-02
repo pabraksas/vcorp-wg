@@ -6,7 +6,7 @@
     "url": "git+https://github.com/pabraksas/vcorp-wg.git"
   },
   "scripts": {
-    "wg": "node packages/wgutils/dist/cli.js",
+    "wg": "node apps/workgroup/dist/cli.js",
     "setup": "pnpm i",
     "build": "turbo build",
     "dev": "turbo dev",

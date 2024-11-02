@@ -1,41 +1,31 @@
 {
-  "name": "workgroup",
-  "description": "vCorp workgroups manager",
-  "repository": "https://github.com/pabraksas/vcorp-wg.git",
-  "homepage": "https://vcorp-wg.vercel.app",
-  "version": "0.1.0",
   "private": true,
-  "main": "dist/index.js",
   "scripts": {
-    "dev": "next dev --turbopack --port 8088",
-    "build": "tsc",
-    "build:next": "next build",
+    "dev": "next dev --turbopack",
+    "build": "next build",
     "start": "next start",
-    "prepack": "tsc",
-    "watch": "tsc --watch",
-    "version": "node scripts/postversion.mjs && git add src/version.ts",
-    "wg": "node dist/cli.js",
-    "wgutils": "node dist/cli.js",
-    "test": "true"
+    "migrate:up": "ley up",
+    "migrate:down": "ley down"
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "@vercel/edge-config": "latest",
+    "moment": "^2.30.1",
+    "next": "canary",
+    "postgres": "^3.4.5",
+    "react": "rc",
+    "react-dom": "rc"
+  },
+  "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "next": "canary",
-    "postgres": "^3.4.3",
-    "react": "rc",
-    "react-dom": "rc",
+    "@types/yargs": "^17.0.33",
+    "dotenv": "latest",
+    "ley": "latest",
+    "pg-connection-string": "latest",
     "typescript": "5.5.4",
-    "zod": "^3.22.4"
-  },
-  "bin": {
-    "wg": "dist/cli.js",
-    "wgutils": "dist/cli.js"
-  },
-  "bugs": {
-    "url": "https://github.com/pabraksas/vcorp-wg/issues"
+    "yargs": "latest"
   }
 }
