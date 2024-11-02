@@ -2,9 +2,9 @@
   "private": true,
   "name": "auth",
   "description": "An example project for NextAuth.js with Next.js",
-  "repository": "https://github.com/nextauthjs/next-auth-example.git",
+  "repository": "https://github.com/pabraksas/vcorp-wg.git",
   "bugs": {
-    "url": "https://github.com/nextauthjs/next-auth/issues"
+    "url": "https://github.com/pabraksas/vcorp-wg/issues"
   },
   "homepage": "https://vcorp-auth.vercel.app",
   "version": "0.1.0",
@@ -14,13 +14,7 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "author": "Iain Collins <me@iaincollins.com>",
-  "contributors": [
-    "Balázs Orbán <info@balazsorban.com>",
-    "Nico Domino <yo@ndo.dev>",
-    "Lluis Agusti <hi@llu.lu>",
-    "Thang Huu Vu <hi@thvu.dev>"
-  ],
+  "author": "Pavel Abraksas <Pavel.Abraksas@gmail.com>",
   "dependencies": {
     "@auth/unstorage-adapter": "^2.0.0",
     "@radix-ui/react-avatar": "^1.0.3",

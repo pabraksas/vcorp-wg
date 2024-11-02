@@ -78,11 +78,16 @@ vars:
 	set +a;
 	fi;
 	#
-	echo "Enabled configs: ${args[*]}"
-	for filename in "${args[@]}" ; do
-		echo "config: ${filename}"
-	end
 
+echo "Enabled configs: $(ALLOWED_CONFIGS[@])"
+
+# ###
+#	echo "Enabled configs: ${ALLOWED_CONFIGS[*]}"
+#	echo "Enabled configs: $(ALLOWED_CONFIGS[@])"
+#	for filename in "${ALLOWED_CONFIGS[@]}" ; 
+#	do
+#		echo "config: ${filename}"
+#	done
 
 #	if ! docker compose "${args[@]}"; then
 #		echo "Failed to start container"
