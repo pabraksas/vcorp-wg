@@ -17,8 +17,10 @@
     "@repo/typescript-config": "workspace:*",
     "@vercel/edge-config": "latest",
     "@vercel/postgres": "latest",
+    "@vercel/postgres-kysely": "latest",
+    "@vercel/kv": "latest",
+    "@vercel/blob": "latest",
     "dotenv": "latest",
-    "typescript": "5.5.4",
     "pg-connection-string": "latest",
     "ley": "latest",
     "react-hook-form": "latest",
@@ -29,6 +31,7 @@
     "@types/node": "^20",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
+    "typescript": "5.5.4",
     "@types/yargs": "latest"
   }
 }

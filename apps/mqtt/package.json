@@ -1,0 +1,24 @@
+{
+  "name": "mqtt",
+  "description": "Message Queuing Telemetry Transport",
+  "private": true,
+  "scripts": {
+    "dev": "next --turbo --port 3883",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "canary",
+    "react": "rc",
+    "react-dom": "rc",
+    "@repo/ui": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "mqtt": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
+    "typescript": "5.5.4"
+  }
+}

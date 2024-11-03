@@ -304,6 +304,16 @@ gitlab-purge: stop
 	@docker rm -v gitlab-postgresql >/dev/null
 
 
+#: generate random: openssl rand -base64 32
+gen:
+	@openssl rand -base64 32
+
+#: generate random: openssl rand -base64 32
+gen_cert:
+	@openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout private.key -out ca.crt
+#	@openssl dhparam -out dhparam.pem 2048
+
+
 cmd:
 	@echo $(filter-out $@,$(MAKECMDGOALS))
 
