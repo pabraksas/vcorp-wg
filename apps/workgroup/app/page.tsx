@@ -1,14 +1,13 @@
-import postgres from "postgres";
+// import postgres from "postgres";
+// let sql = postgres(process.env.DATABASE_URL || process.env.POSTGRES_URL!, { ssl: "allow", });
 
-import { AddForm } from "@/app/add-form";
-import { DeleteForm } from "@/app/delete-form";
+import { sql } from '@vercel/postgres'
 
-let sql = postgres(process.env.DATABASE_URL || process.env.POSTGRES_URL!, {
-  ssl: "allow",
-});
+import { AddForm } from '@/app/add-form'
+import { DeleteForm } from '@/app/delete-form'
 
 export default async function Home() {
-  let workgroups = await sql`SELECT * FROM workgroup`;
+  let workgroups = await sql`SELECT * FROM workgroup`
 
   return (
     <main>
@@ -17,11 +16,11 @@ export default async function Home() {
       <ul>
         {workgroups.map((workgroup) => (
           <li key={workgroup.id}>
-            {workgroup.text}
-            <DeleteForm id={workgroup.id} workgroup={workgroup.text} />
+            {workgroup.name}
+            <DeleteForm id={workgroup.id} workgroup={workgroup} />
           </li>
         ))}
       </ul>
     </main>
-  );
+  )
 }

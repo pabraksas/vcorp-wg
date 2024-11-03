@@ -1,31 +1,34 @@
 {
+  "name": "workgroup",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbo --port 8000",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "migrate:up": "ley up",
     "migrate:down": "ley down"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
-    "@vercel/edge-config": "latest",
-    "moment": "^2.30.1",
     "next": "canary",
-    "postgres": "^3.4.5",
     "react": "rc",
-    "react-dom": "rc"
+    "react-dom": "rc",
+    "@repo/ui": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@vercel/edge-config": "latest",
+    "@vercel/postgres": "latest",
+    "dotenv": "latest",
+    "typescript": "5.5.4",
+    "pg-connection-string": "latest",
+    "ley": "latest",
+    "react-hook-form": "latest",
+    "yargs": "latest",
+    "zod": "latest"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "@types/yargs": "^17.0.33",
-    "dotenv": "latest",
-    "ley": "latest",
-    "pg-connection-string": "latest",
-    "typescript": "5.5.4",
-    "yargs": "latest"
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
+    "@types/yargs": "latest"
   }
 }

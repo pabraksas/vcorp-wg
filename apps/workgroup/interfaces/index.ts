@@ -1,3 +1,5 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 import type { Argv, Arguments, CamelCaseKey } from 'yargs'
 
 /** @internal */
@@ -12,10 +14,20 @@ export type Args<TArgs> = {
   [key in keyof Arguments<TArgs> as key | CamelCaseKey<key>]: Arguments<TArgs>[key]
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // export type { Config } from "./configSchema.js";
 
 /** @internal */
+export type Invoice = {
+  id: string // Will be created on the database
+  customer_id: string
+  amount: number // Stored in cents
+  status: 'pending' | 'paid'
+  date: string
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 export type Config = {
   config: string
 }
@@ -31,7 +43,6 @@ export type User = {
   updated_at: string
 }
 
-/** @internal */
 export type Meeting = {
   primary: boolean
   name: string
@@ -49,7 +60,9 @@ export type Meeting = {
 export type Workgroup = {
   id: number
   name: string
-  text: string
+  text: string | undefined
   config: Config
   updated_at: string
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////

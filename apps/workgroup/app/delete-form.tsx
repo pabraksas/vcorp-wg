@@ -4,9 +4,7 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { deleteWorkgroup } from "@/app/actions";
 
-const initialState = {
-  message: "",
-};
+const initialState = { message: "", };
 
 function DeleteButton() {
   const { pending } = useFormStatus();
